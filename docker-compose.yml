@@ -7,7 +7,10 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            target: php
         container_name: php
+        environment:
+            - APP_ENV=${APP_ENV}
         restart: unless-stopped
         volumes:
             - ./:/var/www/html
@@ -41,10 +44,15 @@ services:
     #     ports:
     #         - "6379:6379"
     node:
-        image: node:20-alpine
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: node
         container_name: node
         volumes:
-            - ./:/var/www/html
+            - ./:/usr/src
+            - ./node_modules:/usr/src/node_modules
+        tty: true
         networks:
             - development
 

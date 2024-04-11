@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm-alpine as php
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
@@ -8,3 +8,13 @@ WORKDIR /var/www/html
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+ENTRYPOINT [ "dockerfiles/entrypoint.sh" ]
+
+#  NodeJS
+FROM node:20-alpine as node-dev
+
+WORKDIR /var/www/html
+COPY . .
+
+VOLUME /var/www/node_modules
