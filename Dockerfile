@@ -12,7 +12,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENTRYPOINT [ "dockerfiles/entrypoint.sh" ]
 
 #  NodeJS
-FROM node:20-alpine as node-dev
+FROM node:20-alpine as node
 
 WORKDIR /var/www/html
 COPY . .
