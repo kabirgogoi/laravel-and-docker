@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine as php
+FROM php:8.2-fpm as php
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
