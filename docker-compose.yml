@@ -4,6 +4,9 @@ networks:
 
 services:
     php:
+        args:
+            user: kabir
+            uid: 1000
         build:
             context: .
             dockerfile: Dockerfile
