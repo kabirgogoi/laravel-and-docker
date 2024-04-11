@@ -8,6 +8,7 @@ services:
             context: .
             dockerfile: Dockerfile
         container_name: php
+        restart: unless-stopped
         volumes:
             - ./:/var/www/html
         networks:
@@ -39,6 +40,13 @@ services:
     #         - development
     #     ports:
     #         - "6379:6379"
+    node:
+        image: node:20-alpine
+        container_name: node
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - development
 
     nginx:
         image: nginx:stable-alpine
